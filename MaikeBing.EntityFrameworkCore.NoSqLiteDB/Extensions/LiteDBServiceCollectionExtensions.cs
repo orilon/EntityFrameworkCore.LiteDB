@@ -9,6 +9,7 @@ using MaikeBing.EntityFrameworkCore.NoSqLiteDB.Query.ExpressionVisitors.Internal
 using MaikeBing.EntityFrameworkCore.NoSqLiteDB.Query.Internal;
 using MaikeBing.EntityFrameworkCore.NoSqLiteDB.Storage.Internal;
 using MaikeBing.EntityFrameworkCore.NoSqLiteDB.ValueGeneration.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors;
@@ -61,16 +62,16 @@ namespace MaikeBing.Extensions.DependencyInjection
             Check.NotNull(serviceCollection, nameof(serviceCollection));
 
             var builder = new EntityFrameworkServicesBuilder(serviceCollection)
-                .TryAdd<IDatabaseProvider, DatabaseProvider<LiteDBOptionsExtension>>()
+                //.TryAdd<IDatabaseProvider, DatabaseProvider<LiteDBOptionsExtension>>()
                 .TryAdd<IValueGeneratorSelector, LiteDBValueGeneratorSelector>()
                 .TryAdd<IDatabase>(p => p.GetService<ILiteDBDatabase>())
                 .TryAdd<IDbContextTransactionManager, LiteDBTransactionManager>()
-                .TryAdd<IDatabaseCreator, LiteDBDatabaseCreator>()
-                .TryAdd<IQueryContextFactory, LiteDBQueryContextFactory>()
-                .TryAdd<IEntityQueryModelVisitorFactory, LiteDBQueryModelVisitorFactory>()
-                .TryAdd<IEntityQueryableExpressionVisitorFactory, LiteDBEntityQueryableExpressionVisitorFactory>()
+                //.TryAdd<IDatabaseCreator, LiteDBDatabaseCreator>()
+                //.TryAdd<IQueryContextFactory, LiteDBQueryContextFactory>()
+                //.TryAdd<IEntityQueryModelVisitorFactory, LiteDBQueryModelVisitorFactory>()
+                //.TryAdd<IEntityQueryableExpressionVisitorFactory, LiteDBEntityQueryableExpressionVisitorFactory>()
                 .TryAdd<IEvaluatableExpressionFilter, EvaluatableExpressionFilter>()
-                .TryAdd<IConventionSetBuilder, LiteDBConventionSetBuilder>()
+                //.TryAdd<IConventionSetBuilder, LiteDBConventionSetBuilder>()
                 .TryAdd<ISingletonOptions, ILiteDBSingletonOptions>(p => p.GetService<ILiteDBSingletonOptions>())
                 .TryAdd<ITypeMappingSource, LiteDBTypeMappingSource>()
                 .TryAddProviderSpecificServices(
